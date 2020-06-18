@@ -1,11 +1,8 @@
-console.log('Starting')
+const request = require('request')
 
-setTimeout(() => {
-    console.log('2 Second Timer')
-}, 2000)
+const url = 'http://api.weatherstack.com/current?access_key=d9f0e392a692320c7647bf70d6f97104&query=Rio de Janeiro'
 
-setTimeout(() => {
-    console.log('0 Second Timer')
-}, 0)
-
-console.log('Stopping')
+request({ url: url }, (error, response) => {
+    const data = JSON.parse(response.body)
+    console.log(data.current)
+})
