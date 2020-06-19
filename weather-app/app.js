@@ -9,8 +9,13 @@ request({ url: url, json: true }, (error, response) => {
     console.log(descrip + '. It is currently ' + temp + ' degrees out. There is a ' + precip + '% chance of rain.')
 })
 
-//
-// Goal: Print a small forecast to the user
-//
-// 1. Print: "It is currently 58.55 degrees out. There is a 0% chance of rain."
-// 2. Test your work!
+// Geocoding
+// Address -> Lat/Long -> Weather
+
+const geocodeUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/Rio%20de%20Janeiro.json?access_token=pk.eyJ1IjoiZ2FiaWFpcmVzIiwiYSI6ImNrYmxlajQ2dzAxencyc256YmE1eWxidXUifQ.hJjl0n9LfFSeqWKm9TYgjQ&limit=1'
+
+request({ url: geocodeUrl, json: true }, (error, response) => {
+    const latitude = response.body.features[0].center[0]
+    const longitude = response.body.features[0].center[1]
+    console.log(latitude, longitude)
+})
